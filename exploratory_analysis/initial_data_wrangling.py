@@ -7,12 +7,27 @@ FILE_PATH = "/content/drive/My Drive/sportsanalytics/nhldraft.csv"
 hockey_df = pd.read_csv(FILE_PATH)
 
 # ------------------------------------------------------------------ #
-# 1.  Clean, but DO NOT overwrite the function!                      #
+# 1.  Clean function (must exist BEFORE using it)                    #
+# ------------------------------------------------------------------ #
+def clean_hockey_df(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Perform basic cleaning on hockey draft DataFrame.
+    Replace this logic with your custom cleaning.
+    """
+    df = df.copy()
+    # Example cleaning steps
+    df.columns = df.columns.str.strip()  # Strip whitespace from column names
+    df.dropna(how='all', inplace=True)   # Drop rows where all values are NaN
+    # Add your real cleaning steps here
+    return df
+
+# ------------------------------------------------------------------ #
+# 2.  Clean, but DO NOT overwrite the function!                      #
 # ------------------------------------------------------------------ #
 hockey_clean = clean_hockey_df(hockey_df)   # ← keep object & function distinct
 
 # ------------------------------------------------------------------ #
-# 2.  One-liner footprint helper                                     #
+# 3.  One-liner footprint helper                                     #
 # ------------------------------------------------------------------ #
 def footprint(df: pd.DataFrame) -> dict:
     """Return shape & memory stats for any DataFrame."""
@@ -29,6 +44,6 @@ for k, v in footprint(hockey_clean).items():
     print(f"  {k:>13}: {v}")
 
 # ------------------------------------------------------------------ #
-# 3.  Optional peek                                                  #
+# 4.  Optional peek                                                  #
 # ------------------------------------------------------------------ #
-hockey_clean.head()
+print(hockey_clean.head())
