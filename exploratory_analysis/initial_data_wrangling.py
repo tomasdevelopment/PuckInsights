@@ -10,15 +10,15 @@ hockey_df = pd.read_csv(FILE_PATH)
 # 1.  Clean function (must exist BEFORE using it)                    #
 # ------------------------------------------------------------------ #
 def clean_hockey_df(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Perform basic cleaning on hockey draft DataFrame.
-    Replace this logic with your custom cleaning.
-    """
     df = df.copy()
-    # Example cleaning steps
-    df.columns = df.columns.str.strip()  # Strip whitespace from column names
-    df.dropna(how='all', inplace=True)   # Drop rows where all values are NaN
-    # Add your real cleaning steps here
+    df.columns = df.columns.str.strip()         # Clean column names
+    df.dropna(how='all', inplace=True)          # Drop empty rows
+
+    # Make sure 'points' exists and is numeric, then fill NaNs
+    if 'points' in df.columns:
+        df['points'] = pd.to_numeric(df['points'], errors='coerce').fillna(0).astype(int)
+    else:
+        raise KeyError("'points' column not found in DataFrame")
     return df
 
 # ------------------------------------------------------------------ #
