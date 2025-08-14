@@ -1,5 +1,5 @@
 # PuckInsights
-PuckInsights uses data found online on NHL and Ice hockey and does a exploratory data analysis of it, using azure functions to deploy it. 
+PuckInsights uses data found online on NHL and Ice hockey and does a exploratory data analysis of it, initially using a google notebooks and once the project is completed I will modify the code converting it into  azure container apps project to deploy it  in cloud. 
 
 
 I used DF containing the followoing information after cleaning, to do a data exploratory and practical statistical analysis of it: 
